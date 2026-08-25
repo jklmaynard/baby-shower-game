@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rails --version)",
+      "Bash(ruby --version)",
+      "Bash(rbenv versions *)",
+      "Bash(rvm list *)",
+      "Bash(gem list *)",
+      "Read(//Users/james/.rbenv/**)",
+      "Bash(brew list *)",
+      "Bash(brew --version)",
+      "Bash(brew services *)",
+      "Bash(/opt/homebrew/opt/postgresql@17/bin/pg_isready)",
+      "Bash(open *)"
+    ]
+  }
+}

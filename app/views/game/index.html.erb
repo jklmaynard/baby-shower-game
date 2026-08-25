@@ -1,0 +1,105 @@
+<% content_for :title, "Baby Shower Trivia — Play" %>
+
+<div id="game-container" class="game-container"
+     data-player-id="<%= @player.id %>"
+     data-questions='<%= @questions.to_json.html_safe %>'>
+
+  <div id="slides-wrapper" class="slides-wrapper">
+    <% @questions.each_with_index do |question, index| %>
+      <div class="slide" data-index="<%= index %>" data-question-id="<%= question.id %>">
+        <div class="slide-inner">
+
+          <%# Front face — question %>
+          <div class="slide-face slide-front">
+            <div class="slide-header">
+              <span class="question-counter">Q<%= index + 1 %> of <%= @questions.size %></span>
+              <%= link_to "Exit", session_path(1), method: :delete, data: { turbo_method: :delete }, class: "exit-link" %>
+            </div>
+
+            <div class="slide-content">
+              <p class="question-body"><%= question.body %></p>
+
+              <% if question.multiple? %>
+                <div class="answers-grid" data-question-id="<%= question.id %>">
+                  <% question.answers.each do |answer| %>
+                    <button class="answer-btn"
+                            data-question-id="<%= question.id %>"
+                            data-answer="<%= answer['text'] %>">
+                      <%= answer['text'] %>
+                    </button>
+                  <% end %>
+                </div>
+              <% elsif question.date? %>
+                <div class="date-answer-form" data-question-id="<%= question.id %>">
+                  <input type="date"
+                         class="date-input"
+                         data-question-id="<%= question.id %>" />
+                  <button class="submit-date-btn"
+                          data-question-id="<%= question.id %>">
+                    Submit
+                  </button>
+                </div>
+              <% else %>
+                <div class="blank-answer-form" data-question-id="<%= question.id %>">
+                  <input type="text"
+                         class="blank-input"
+                         placeholder="Type your answer..."
+                         data-question-id="<%= question.id %>" />
+                  <button class="submit-blank-btn"
+                          data-question-id="<%= question.id %>">
+                    Submit
+                  </button>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="timer-section">
+              <div class="timer-bar-track">
+                <div class="timer-bar" data-question-id="<%= question.id %>"></div>
+              </div>
+              <span class="timer-label" data-question-id="<%= question.id %>">0:30</span>
+            </div>
+          </div>
+
+          <%# Back face — reveal answer %>
+          <div class="slide-face slide-back">
+            <div class="slide-back-content">
+              <div class="correct-label">✨ Answer ✨</div>
+              <% if question.multiple? %>
+                <div class="correct-answers">
+                  <% question.correct_answers.each do |a| %>
+                    <div class="correct-answer-pill"><%= a['text'] %></div>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="correct-answers">
+                  <% question.correct_answer_texts.each do |t| %>
+                    <div class="correct-answer-pill"><%= t %></div>
+                  <% end %>
+                </div>
+              <% end %>
+              <p class="question-recap"><%= question.body %></p>
+              <div class="swipe-hint">Swipe left for next →</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+
+    <%# End card %>
+    <div class="slide slide-end" data-index="<%= @questions.size %>">
+      <div class="slide-inner">
+        <div class="slide-face slide-front">
+          <div class="end-screen">
+            <div class="end-icon">🎉</div>
+            <h2 class="end-title">That's a wrap!</h2>
+            <p class="end-subtitle">Thanks for playing, <%= @player.first_name %>!</p>
+            <%= link_to "Play Again", new_registration_path, class: "btn baby-btn-primary mt-3" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
