@@ -17,8 +17,4 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to new_registration_path, alert: "Please register to play." unless logged_in?
   end
-
-  def correct_passkey?(submitted)
-    submitted == ENV.fetch("GAME_PASSKEY", "123456")
-  end
 end

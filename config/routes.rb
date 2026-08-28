@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :registrations, only: [ :new, :create ]
   resources :sessions, only: [ :new, :create, :destroy ]
   get "/game", to: "game#index", as: :game
+  get "/leaderboard", to: "leaderboard#index", as: :leaderboard
 
   namespace :api do
     resources :answers, only: [ :create, :index ]

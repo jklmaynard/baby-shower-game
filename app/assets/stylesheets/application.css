@@ -482,8 +482,90 @@ body.baby-bg {
 .end-subtitle {
   color: var(--text-mid);
   font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
+
+.end-score-display {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  background: rgba(255,255,255,0.7);
+  border-radius: 16px;
+  padding: 0.5rem 2rem;
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 12px rgba(180, 140, 200, 0.15);
+}
+
+.baby-btn-secondary {
+  background: white;
+  color: var(--text-dark);
+  border: 2px solid var(--lavender-dark);
+  border-radius: 14px;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.6rem 1.5rem;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+
+.baby-btn-secondary:hover { background: var(--lavender); color: var(--text-dark); }
+
+/* ── Leaderboard Page ──────────────────────────────── */
+
+.leaderboard-page { max-width: 540px; margin: 0 auto; }
+
+.leaderboard-card {
+  max-width: 480px;
+  background: rgba(255,255,255,0.92);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid rgba(180, 140, 200, 0.12);
+  gap: 0.75rem;
+  transition: background 0.15s;
+}
+
+.leaderboard-row:last-child { border-bottom: none; }
+
+.leaderboard-row.leaderboard-top {
+  background: linear-gradient(90deg, rgba(255,244,194,0.6), rgba(253,228,204,0.4));
+}
+
+.lb-rank {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-light);
+  width: 1.6rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.leaderboard-top .lb-rank { color: #c07800; font-size: 1rem; }
+
+.lb-name {
+  flex: 1;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.lb-score {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-mid);
+  letter-spacing: 0.5px;
+}
+
+.leaderboard-top .lb-score { color: var(--text-dark); }
 
 /* ── Confetti burst (CSS only) ─────────────────────── */
 @keyframes confetti-fall {

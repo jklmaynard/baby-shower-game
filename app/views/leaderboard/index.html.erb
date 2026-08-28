@@ -1,0 +1,27 @@
+<% content_for :title, "Leaderboard" %>
+
+<div class="leaderboard-page d-flex flex-column align-items-center min-vh-100 px-3 py-4">
+  <div class="text-center mb-4">
+    <div class="baby-icon mb-2">🏆</div>
+    <h1 class="baby-title">Leaderboard</h1>
+    <p class="baby-subtitle"><%= @total %> questions total</p>
+  </div>
+
+  <div class="leaderboard-card mx-auto w-100">
+    <% if @players.empty? %>
+      <p class="text-center" style="color: var(--text-mid);">No players yet — be the first!</p>
+    <% else %>
+      <% @players.each_with_index do |player, i| %>
+        <div class="leaderboard-row <%= i == 0 ? 'leaderboard-top' : '' %>">
+          <span class="lb-rank"><%= i + 1 %></span>
+          <span class="lb-name"><%= player.display_name %></span>
+          <span class="lb-score"><%= player.correct_count %>/<%= @total %></span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mt-4 d-flex gap-3">
+    <%= link_to "Play Again", new_registration_path, class: "btn baby-btn-secondary" %>
+  </div>
+</div>

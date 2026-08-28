@@ -2,7 +2,7 @@
   <div class="text-center mb-4">
     <div class="baby-icon mb-2">🍼</div>
     <h1 class="baby-title">Baby Shower Trivia</h1>
-    <p class="baby-subtitle">Enter your name and the passkey to join the fun!</p>
+    <p class="baby-subtitle">Enter your name to join the fun!</p>
   </div>
 
   <%= form_with url: registrations_path, method: :post, class: "registration-form w-100" do |f| %>
@@ -13,15 +13,9 @@
           <%= text_field_tag :first_name, params[:first_name], class: "form-control baby-input", placeholder: "Your first name", required: true, autocomplete: "given-name" %>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-4">
           <label class="form-label baby-label">Last Name</label>
           <%= text_field_tag :last_name, params[:last_name], class: "form-control baby-input", placeholder: "Your last name", required: true, autocomplete: "family-name" %>
-        </div>
-
-        <div class="mb-4">
-          <label class="form-label baby-label">Game Passkey</label>
-          <%= password_field_tag :passkey, nil, class: "form-control baby-input text-center passkey-input", placeholder: "● ● ● ● ● ●", maxlength: 6, minlength: 6, inputmode: "numeric", pattern: "[0-9]{6}", required: true %>
-          <div class="form-text text-center mt-1" style="color: #b8a0c8;">6-digit code provided by your host</div>
         </div>
 
         <button type="submit" class="btn baby-btn-primary w-100 py-3">

@@ -95,7 +95,8 @@
             <div class="end-icon">🎉</div>
             <h2 class="end-title">That's a wrap!</h2>
             <p class="end-subtitle">Thanks for playing, <%= @player.first_name %>!</p>
-            <%= link_to "Play Again", new_registration_path, class: "btn baby-btn-primary mt-3" %>
+            <div class="end-score-display" id="end-score">—</div>
+            <%= link_to "View Leaderboard", leaderboard_path, class: "btn baby-btn-primary mt-2" %>
           </div>
         </div>
       </div>

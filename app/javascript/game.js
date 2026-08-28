@@ -9,6 +9,8 @@ class TriviGame {
     this.currentIndex = 0;
     this.timers = {};
     this.answered = {};
+    this.correctCount = 0;
+    this.totalQuestions = this.slides.length - 1; // exclude end slide
 
     this.bindEvents();
     this.startSlide(0);
@@ -20,7 +22,16 @@ class TriviGame {
     if (index < 0 || index >= this.slides.length) return;
     this.currentIndex = index;
     this.wrapper.style.transform = `translateX(-${index * 100}vw)`;
-    if (index < this.slides.length - 1) this.startSlide(index);
+    if (index < this.slides.length - 1) {
+      this.startSlide(index);
+    } else {
+      this.showEndScore();
+    }
+  }
+
+  showEndScore() {
+    const el = document.getElementById("end-score");
+    if (el) el.textContent = `Your score: ${this.correctCount}/${this.totalQuestions}`;
   }
 
   nextSlide() {
@@ -95,6 +106,7 @@ class TriviGame {
 
       if (data.success !== undefined) {
         this.highlightAnswer(slide, answerText, data.is_correct);
+        if (data.is_correct) this.correctCount++;
       }
     } catch (e) {
       console.error("Answer submission failed", e);

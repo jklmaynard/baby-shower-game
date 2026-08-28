@@ -5,16 +5,9 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    unless correct_passkey?(params[:passkey])
-      @player = Player.new(first_name: params[:first_name], last_name: params[:last_name])
-      flash.now[:alert] = "Invalid passkey. Please check with the game host."
-      render :new, status: :unprocessable_entity and return
-    end
-
     @player = Player.new(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      passkey: params[:passkey]
+      first_name: params[:first_name].to_s.strip,
+      last_name: params[:last_name].to_s.strip
     )
 
     if @player.save
