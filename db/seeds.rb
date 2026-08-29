@@ -4,7 +4,7 @@ questions_data = [
     question_type: :date,
     position: 11,
     answers: [
-      { text: "10/4/2026", is_correct: true }
+      { text: "10/3/2026", is_correct: true }
     ]
   },
   {
