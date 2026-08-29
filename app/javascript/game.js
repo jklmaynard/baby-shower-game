@@ -240,12 +240,10 @@ class TriviGame {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("game-container");
-  if (container) new TriviGame(container);
-});
-
 document.addEventListener("turbo:load", () => {
   const container = document.getElementById("game-container");
-  if (container) new TriviGame(container);
+  if (container && !container.dataset.gameInitialized) {
+    container.dataset.gameInitialized = "true";
+    new TriviGame(container);
+  }
 });

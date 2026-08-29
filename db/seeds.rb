@@ -23,10 +23,10 @@ questions_data = [
     question_type: :multiple,
     position: 13,
     answers: [
-      { text: "Teenage Mutant Ninja Turtles", is_correct: true },
       { text: "Koosh Balls", is_correct: false },
       { text: "Game Boy", is_correct: false },
-      { text: "Super Soaker", is_correct: false }
+      { text: "Super Soaker", is_correct: false },
+      { text: "Teenage Mutant Ninja Turtles", is_correct: true }
     ]
   },
   {
@@ -67,9 +67,9 @@ questions_data = [
     question_type: :multiple,
     position: 18,
     answers: [
-      { text: "300", is_correct: true },
       { text: "206", is_correct: false },
       { text: "260", is_correct: false },
+      { text: "300", is_correct: true },
       { text: "180", is_correct: false }
     ]
   },
