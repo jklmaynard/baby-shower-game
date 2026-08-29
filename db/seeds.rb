@@ -4,24 +4,29 @@ questions_data = [
     question_type: :date,
     position: 11,
     answers: [
-      { text: "10/6/2026", is_correct: true }
+      { text: "10/4/2026", is_correct: true }
     ]
   },
   {
     body: "What was the most popular toy the year Hannah was born?",
-    question_type: :blank,
+    question_type: :multiple,
     position: 12,
     answers: [
-      { text: "Trolls", is_correct: true }
+      { text: "Trolls", is_correct: true },
+      { text: "Lite Brite", is_correct: false },
+      { text: "Tickle Me Elmo", is_correct: false },
+      { text: "Cabbage Patch Kids", is_correct: false }
     ]
   },
   {
     body: "What was the most popular toy the year Patrick was born?",
-    question_type: :blank,
+    question_type: :multiple,
     position: 13,
     answers: [
       { text: "Teenage Mutant Ninja Turtles", is_correct: true },
-      { text: "TMNT", is_correct: true }
+      { text: "Koosh Balls", is_correct: false },
+      { text: "Game Boy", is_correct: false },
+      { text: "Super Soaker", is_correct: false }
     ]
   },
   {
@@ -59,10 +64,13 @@ questions_data = [
   },
   {
     body: "How many bones does a baby have at birth?",
-    question_type: :blank,
+    question_type: :multiple,
     position: 18,
     answers: [
-      { text: "300", is_correct: true }
+      { text: "300", is_correct: true },
+      { text: "206", is_correct: false },
+      { text: "260", is_correct: false },
+      { text: "180", is_correct: false }
     ]
   },
   {
@@ -81,15 +89,37 @@ questions_data = [
       { text: "kneecaps", is_correct: true },
       { text: "patella", is_correct: true }
     ]
+  },
+  {
+    body: "What is Baby Campbell's Sex?",
+    question_type: :multiple,
+    position: 21,
+    answers: [
+      { text: "Boy", is_correct: false },
+      { text: "Girl", is_correct: false },
+      { text: "Both (It's Twins!)", is_correct: false },
+      { text: "It's a Surprise", is_correct: true }
+    ]
+  },
+  {
+    body: "Name one of Baby Campbell's Four-Legged Siblings",
+    question_type: :blank,
+    position: 22,
+    answers: [
+      { text: "Kelpie", is_correct: true },
+      { text: "Tuesday", is_correct: true },
+      { text: "Penny", is_correct: true },
+      { text: "Penelope", is_correct: true }
+    ]
   }
 ]
 
 questions_data.each do |data|
-  Question.find_or_create_by!(body: data[:body]) do |q|
-    q.question_type = data[:question_type]
-    q.position      = data[:position]
-    q.answers       = data[:answers].map { |a| { "text" => a[:text], "is_correct" => a[:is_correct] } }
-  end
+  q = Question.find_or_initialize_by(body: data[:body])
+  q.question_type = data[:question_type]
+  q.position      = data[:position]
+  q.answers       = data[:answers].map { |a| { "text" => a[:text], "is_correct" => a[:is_correct] } }
+  q.save!
 end
 
 puts "Seeded #{Question.count} questions."
